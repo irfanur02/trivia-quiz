@@ -1,4 +1,9 @@
 export default function Button({ text, variant, w, onClick }) {
+	const widthMap = {
+  	max: "w-max",
+  	full: "w-full",
+	};
+
 	const buttonColor = 
 		variant === "main" 
 		? "bg-orange-700 border-2 border-yellow-500 text-white"
@@ -12,6 +17,6 @@ export default function Button({ text, variant, w, onClick }) {
 	return(
 		<button 
 			onClick={onClick}
-			className={`${buttonColor} text-center text-[1.2rem] w-[${w}] p-3 border-1 rounded-xl font-medium cursor-pointer`}>{text}</button>
+			className={`${buttonColor} text-center text-[1.2rem] ${widthMap[w]} p-3 border-1 rounded-xl font-medium cursor-pointer`}>{text}</button>
 	)
 }

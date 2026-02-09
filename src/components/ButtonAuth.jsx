@@ -7,8 +7,8 @@ export default function ButtonAuth() {
 	return(
 		<>
 			<div className="flex flex-col gap-3 mt-10">
-				<Button text="Login" variant="main" w="full" onClick={() => navigate('/formLogin')} />
-				<Button text="Register" variant="secondary" w="full" onClick={() => navigate('/formRegister')} />
+				<Button text="Login" variant="main" w="full" onClick={() => navigate('/login')} />
+				<Button text="Register" variant="secondary" w="full" onClick={() => navigate('/register')} />
 			</div>
 		</>
 	)
