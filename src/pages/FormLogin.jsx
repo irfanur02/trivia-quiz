@@ -94,18 +94,35 @@ export default function FormLogin() {
 	  return !usernameWarning && !passwordWarning
 	}
 
+	function randomText(length = 10) {
+	  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+	  const array = new Uint8Array(length)
+	  crypto.getRandomValues(array)
+
+	  return Array.from(array, x => chars[x % chars.length]).join('')
+	}
 
 	function handleSubmit(e) {
     e.preventDefault()
 
-    const hasWarning = warningFormLogin()
+    const token = JSON.parse(sessionStorage.getItem('token')) || []
 
+    const hasWarning = warningFormLogin()
     if(!hasWarning) {
 	    const users = JSON.parse(localStorage.getItem('userRegister')) || []
-
 		  const isValidLogin = validasiLogin(users)
 
 		  if (isValidLogin) {
+		  	token.push({
+		      username: form.username,
+		      token: randomText(10)
+		    })
+
+		  	sessionStorage.setItem(
+		      'token',
+		      JSON.stringify(token)
+		    )
+
 		    navigate('/play-test')
 		  }
     }
@@ -119,6 +136,7 @@ export default function FormLogin() {
 						<input 
 							className="border-1 border-black w-full p-3 bg-gray-300 rounded-lg" 
 							placeholder="Username" 
+							autoComplete="off"
 							name="username" 
 							value={form.username}
 	          	onChange={handleChange} />
@@ -130,6 +148,7 @@ export default function FormLogin() {
 						<input 
 							className="border-1 border-black w-full p-3 bg-gray-300 rounded-lg" 
 							placeholder="Password" 
+							autoComplete="off"
 							type="password" 
 							name="password" 
 							value={form.password}

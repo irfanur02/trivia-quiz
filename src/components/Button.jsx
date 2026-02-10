@@ -6,13 +6,13 @@ export default function Button({ text, variant, w, type, onClick }) {
 
 	const buttonColor = 
 		variant === "main" 
-		? "bg-orange-700 border-2 border-yellow-500 text-white"
+		? "bg-orange-700 border-2 border-yellow-500 text-white hover:bg-orange-600 hover:border-yellow-400"
 		: variant === "secondary" 
-		? "bg-gray-300 border-2 border-gray-500 text-gray-900"
+		? "bg-gray-300 border-2 border-gray-500 text-gray-900 hover:bg-gray-200 hover:border-gray-400"
 		: variant === "white" 
-		? "bg-gray-300 border-2 border-gray-500 text-gray-900"
+		? "bg-gray-300 border-2 border-gray-500 text-gray-900 hover:bg-gray-200 hover:border-gray-400"
 		: variant === "red" 
-		? "bg-red-600 border-2 border-red-950 text-white" : "";
+		? "bg-red-600 border-2 border-red-950 text-white hover:bg-red-500 hover:border-red-800" : "";
 
 	return(
 		<button 

@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import MainLayout from '../layouts/MainLayout'
 import AuthLayout from '../layouts/AuthLayout'
 import AuthRoute from './AuthRoute'
+import ProtectedRoute from './ProtectedRoute'
 // import '../assets/App.css'
 
 function App() {
@@ -12,7 +13,13 @@ function App() {
         <Routes>
           {/*<Route path="/" element={<AuthLayout />} />*/}
           <Route path="/*" element={ <AuthRoute /> } />
-          <Route path="/play-test" element={ <MainLayout /> } ></Route>
+          <Route 
+            path="/play-test" 
+            element={ 
+              <ProtectedRoute>
+                <MainLayout />
+              </ProtectedRoute> 
+            } ></Route>
         </Routes>
       </div>
     </>

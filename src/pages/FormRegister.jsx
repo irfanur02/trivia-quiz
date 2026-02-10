@@ -123,6 +123,7 @@ export default function FormRegister() {
 						<input 
 							className="border-1 border-black w-full p-3 bg-gray-300 rounded-lg" 
 							placeholder="Username" 
+							autoComplete="off"
 							name="username" 
 							value={form.username}
 	          	onChange={handleChange} />
@@ -134,6 +135,7 @@ export default function FormRegister() {
 						<input 
 							className="border-1 border-black w-full p-3 bg-gray-300 rounded-lg" 
 							placeholder="Password" 
+							autoComplete="off"
 							type="password" 
 							name="password" 
 							value={form.password}
