@@ -1,15 +1,38 @@
+import { useState, useEffect } from 'react'
+
 export default function Question({ item, no, onClickAnswer }) {
+	const [answers, setAnswers] = useState([]);
+	const [selected, setSelected] = useState(null);
+  const [locked, setLocked] = useState(false);
+
 	const shuffleArray = (array) => {
 	  return [...array].sort(() => Math.random() - 0.5);
 	};
 
-	const answers = shuffleArray([
-	  { text: item.correct_answer, isCorrect: true },
-	  ...(item.incorrect_answers ?? []).map(ans => ({
-	    text: ans,
-	    isCorrect: false
-	  }))
-	]);
+	useEffect(() => {
+		const answers = shuffleArray([
+		  { text: item.correct_answer, isCorrect: true },
+		  ...(item.incorrect_answers ?? []).map(ans => ({
+		    text: ans,
+		    isCorrect: false
+		  }))
+		]);
+		setAnswers(answers);
+    // reset saat soal berganti
+    setSelected(null);
+    setLocked(false);
+  }, [item]);
+
+	function handleSelect(ans) {
+    if (locked) return;
+
+    setSelected(ans);
+    setLocked(true);
+
+    setTimeout(() => {
+      onClickAnswer(no, item.question, ans.text, ans.isCorrect);
+    }, 300);
+  }
 
 	return(
 		<>
@@ -35,7 +58,8 @@ export default function Question({ item, no, onClickAnswer }) {
               name={`question-${no}`}
               value={ans.text}
               className="hidden"
-              onChange={() => onClickAnswer(no, item.question, ans.text, ans.isCorrect)}
+              onChange={() => handleSelect(ans)}
+              disabled={locked}
             />
           </label>
         ))}
