@@ -8,6 +8,7 @@ export default function MainLayout() {
 	const [startTest, setStartTest] = useState(false)
 	const [showResult, setShowResult] = useState(false)
 	const [doneTest, setDoneTest] = useState(false)
+	const [questionsReady, setQuestionsReady] = useState(false);
 	const [answer, setAnswer] = useState([]);
 
 	function handleStartTest() {
@@ -23,6 +24,7 @@ export default function MainLayout() {
 		setShowResult(false)
 		setStartTest(false)
 		setDoneTest(false);
+		setQuestionsReady(false);
 		setAnswer([]);
 	}
 
@@ -30,10 +32,14 @@ export default function MainLayout() {
 		setDoneTest(true);
 	}
 
+	function handleFetchingQuestions() {
+		setLoading(true)
+	}
+
 	return (
 		<>
 			<main className="w-full h-screen bg-blue-900 grid place-content-center">
-				{startTest && !doneTest && (
+				{startTest && !doneTest && questionsReady && (
 					<Timer 
 						start={startTest}
 					  duration={15}
@@ -44,7 +50,11 @@ export default function MainLayout() {
 					<Pretest handleStartTest={handleStartTest} />)}
 
 				{startTest && !showResult && !doneTest && (
-					<Test handleDoneTest={handleDoneTest} setAnswer={setAnswer} />)}
+					<Test 
+						handleDoneTest={handleDoneTest} 
+						setAnswer={setAnswer} 
+						onQuestionsReady={() => setQuestionsReady(true)}
+					/>)}
 
 				{(showResult || doneTest) && (
 					<ResultTest handleReplayGame={handleReplayGame} result={answer} />)}

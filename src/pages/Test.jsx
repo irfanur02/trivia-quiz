@@ -1,32 +1,34 @@
 import { useState, useEffect } from 'react'
 import Question from '../components/Question'
 
-export default function Test({ handleDoneTest, setAnswer }) {
+export default function Test({ handleDoneTest, setAnswer, onQuestionsReady }) {
 	const [questions, setQuestions] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true); 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const fetchQuestions = async () => {
-    try {
-      setLoading(true);
-
-      const res = await fetch(
-        "https://opentdb.com/api.php?amount=5&category=27&difficulty=easy&type=multiple"
-      );
-      const data = await res.json();
-
-      setQuestions(data.results);
-    } catch (err) {
-      setError("Gagal mengambil soal");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    async function fetchQuestions() {
+      try {
+        const res = await fetch(
+          "https://opentdb.com/api.php?amount=5&category=27&difficulty=easy&type=multiple"
+        );
+        const data = await res.json();
+        setQuestions(data.results);
+      } catch {
+        setError("Gagal mengambil soal");
+      } finally {
+        setLoading(false);
+      }
+    }
     fetchQuestions();
   }, []);
+
+  useEffect(() => {
+    if (!loading && questions.length > 0) {
+      onQuestionsReady();
+    }
+  }, [loading, questions]);
 
   if (loading) return <p>Loading soal...</p>;
   if (error) return <p>{error}</p>;
@@ -47,8 +49,6 @@ export default function Test({ handleDoneTest, setAnswer }) {
 
     if (currentIndex+1 == questions.length) handleDoneTest()
   }
-
-  console.log(questions);
 
 	return(
 		<>
