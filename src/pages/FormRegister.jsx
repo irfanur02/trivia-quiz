@@ -93,7 +93,7 @@ export default function FormRegister() {
     const hasWarning = warningFormRegister()
 
 	  if (!hasWarning) {
-	    const users = JSON.parse(localStorage.getItem('userRegister')) || []
+	    const users = JSON.parse(localStorage.getItem('users')) || []
 	    const username = form.username
 
 	    const hasUserRegistered = validasiRegister(users, username)
@@ -104,10 +104,7 @@ export default function FormRegister() {
 		      password: form.password
 		    })
 
-		    localStorage.setItem(
-		      'userRegister',
-		      JSON.stringify(users)
-		    )
+		    localStorage.setItem('users', JSON.stringify(users))
 
 		    navigate('/login')
 	    }

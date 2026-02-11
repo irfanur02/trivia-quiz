@@ -109,7 +109,7 @@ export default function FormLogin() {
 
     const hasWarning = warningFormLogin()
     if(!hasWarning) {
-	    const users = JSON.parse(localStorage.getItem('userRegister')) || []
+	    const users = JSON.parse(localStorage.getItem('users')) || []
 		  const isValidLogin = validasiLogin(users)
 
 		  if (isValidLogin) {
@@ -118,10 +118,7 @@ export default function FormLogin() {
 		      token: randomText(10)
 		    })
 
-		  	sessionStorage.setItem(
-		      'token',
-		      JSON.stringify(token)
-		    )
+		  	sessionStorage.setItem('token', JSON.stringify(token))
 
 		    navigate('/play-test')
 		  }

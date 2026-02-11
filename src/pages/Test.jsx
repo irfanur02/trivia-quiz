@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react'
 import Question from '../components/Question'
 
-export default function Test({ handleDoneTest, setAnswer, onQuestionsReady }) {
-	const [questions, setQuestions] = useState([]);
+export default function Test({ 
+  handleDoneTest, 
+  setAnswer, 
+  onQuestionsReady, 
+  questionCount, 
+  questionSet, 
+  questionGet,
+  indexQuestionContinueTest,
+  answersGet
+}) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true); 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(indexQuestionContinueTest);
 
   useEffect(() => {
     async function fetchQuestions() {
@@ -14,7 +22,7 @@ export default function Test({ handleDoneTest, setAnswer, onQuestionsReady }) {
           "https://opentdb.com/api.php?amount=5&category=27&difficulty=easy&type=multiple"
         );
         const data = await res.json();
-        setQuestions(data.results);
+        questionSet(data.results);
       } catch {
         setError("Gagal mengambil soal");
       } finally {
@@ -25,10 +33,17 @@ export default function Test({ handleDoneTest, setAnswer, onQuestionsReady }) {
   }, []);
 
   useEffect(() => {
-    if (!loading && questions.length > 0) {
+    if (!loading && questionCount() > 0) {
       onQuestionsReady();
     }
-  }, [loading, questions]);
+  }, [loading]);
+
+  useEffect(() => {
+    const savedAnswers = answersGet();
+    if (savedAnswers && Array.isArray(savedAnswers)) {
+      setAnswer(savedAnswers);
+    }
+  }, []);
 
   if (loading) return <p>Loading soal...</p>;
   if (error) return <p>{error}</p>;
@@ -44,10 +59,10 @@ export default function Test({ handleDoneTest, setAnswer, onQuestionsReady }) {
       }
     ]);
   	setCurrentIndex(prev =>
-			prev + 1 < questions.length ? prev + 1 : 0
+			prev + 1 < questionCount() ? prev + 1 : 0
 		);
 
-    if (currentIndex+1 == questions.length) handleDoneTest()
+    if (currentIndex+1 == questionCount()) handleDoneTest()
   }
 
 	return(
@@ -55,7 +70,7 @@ export default function Test({ handleDoneTest, setAnswer, onQuestionsReady }) {
 			<section className="w-sm flex flex-col items-center text-[1.3rem]">
 				<Question 
           key={currentIndex} 
-          item={questions[currentIndex]} 
+          item={questionGet(currentIndex)}
           no={currentIndex+1} 
           onClickAnswer={handleClickAnswer} />
 			</section>
