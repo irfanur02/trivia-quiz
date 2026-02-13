@@ -2,7 +2,8 @@
 
 Trivia Quiz adalah sebuah game sederhana berupa quiz berbasis web yang dibuat dengan menggunakan React. Data pertanyaan quiz, diambil menggunakan API dari sebuah web (https://opentdb.com/). Aplikasi ini berjalan hanya disisi client sehingga proses penyimpanan data user menggunakan local storage bawaan browser.
 
----
+Demo: https://trivia-quiz-fan.netlify.app/
+
 ## ✨Fitur
 
 - Memiliki fitur auth berupa login/logout dan register.
@@ -10,16 +11,25 @@ Trivia Quiz adalah sebuah game sederhana berupa quiz berbasis web yang dibuat de
 - Soal pada quiz ditutup ketika timer habis dan langsung menampilkan hasil perolehan.
 - Menampilkan hanya 1 soal pada halaman dan akan berganti ketika setelah memilih jawaban.
 
----
 ## 📷Screenshots
-![[landing page.png]]
-![[register.png]]
-![[login.png]]
-![[pretest.png]]
-![[test.png]]
-![[result test.png]]
+### Landing Page
+![Landing Page](public/screenshots/landing-page.png)
 
----
+### Register
+![Register](public/screenshots/register.png)
+
+### Login
+![Login](public/screenshots/login.png)
+
+### Pretest
+![Pretest](public/screenshots/pretest.png)
+
+### Test
+![Test](public/screenshots/test.png)
+
+### Result
+![Result](public/screenshots/result-test.png)
+
 ## 💻Tech Stack
 
 ### Frontend
@@ -30,7 +40,6 @@ Trivia Quiz adalah sebuah game sederhana berupa quiz berbasis web yang dibuat de
 ### Tools
 - Vite
 
----
 ## 📚Struktur Project
 ```
 ├── public/  
@@ -71,6 +80,5 @@ Lalu, akses aplikasi melalui browser:
 http://localhost:5173
 ```
 
----
 ## 🎯Tujuan
 Proyek ini dibuat sebagai prasyarat pendaftaran mengikuti Frontend Engineering Internship Program yang diselenggarakan oleh DOT Indonesia.
