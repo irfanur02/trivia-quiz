@@ -12,32 +12,32 @@ Demo: https://trivia-quiz-fan.netlify.app/
 - Menampilkan hanya 1 soal pada halaman dan akan berganti ketika setelah memilih jawaban.
 
 ## 📷Screenshots
-### Landing Page
+**Landing Page**
 ![Landing Page](public/screenshots/landing-page.png)
 
-### Register
+**Register**
 ![Register](public/screenshots/register.png)
 
-### Login
+**Login**
 ![Login](public/screenshots/login.png)
 
-### Pretest
+**Pretest**
 ![Pretest](public/screenshots/pretest.png)
 
-### Test
+**Test**
 ![Test](public/screenshots/test.png)
 
-### Result
+**Result**
 ![Result](public/screenshots/result-test.png)
 
 ## 💻Tech Stack
 
-### Frontend
+**Frontend**
 - JavaScript (ES6+)
 - React
 - HTML5 & CSS3
 - Tailwind
-### Tools
+**Tools**
 - Vite
 
 ## 📚Struktur Project
@@ -53,7 +53,6 @@ Demo: https://trivia-quiz-fan.netlify.app/
 └── index.css
 ```
 
----
 ## ⚙Installasi & Setup
 
 Prasyarat:
