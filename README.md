@@ -1,16 +1,76 @@
-# React + Vite
+## 📃Tentang Trivia Quiz Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Trivia Quiz adalah sebuah game sederhana berupa quiz berbasis web yang dibuat dengan menggunakan React. Data pertanyaan quiz, diambil menggunakan API dari sebuah web (https://opentdb.com/). Aplikasi ini berjalan hanya disisi client sehingga proses penyimpanan data user menggunakan local storage bawaan browser.
 
-Currently, two official plugins are available:
+---
+## ✨Fitur
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Memiliki fitur auth berupa login/logout dan register.
+- Terdapat timer saat quiz dimulai.
+- Soal pada quiz ditutup ketika timer habis dan langsung menampilkan hasil perolehan.
+- Menampilkan hanya 1 soal pada halaman dan akan berganti ketika setelah memilih jawaban.
 
-## React Compiler
+---
+## 📷Screenshots
+![[landing page.png]]
+![[register.png]]
+![[login.png]]
+![[pretest.png]]
+![[test.png]]
+![[result test.png]]
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
+## 💻Tech Stack
 
-## Expanding the ESLint configuration
+### Frontend
+- JavaScript (ES6+)
+- React
+- HTML5 & CSS3
+- Tailwind
+### Tools
+- Vite
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+## 📚Struktur Project
+```
+├── public/  
+│ ├── _redirects/  
+├── src/  
+│ ├── components/  
+│ ├── pages/  
+│ ├── routes/  
+│ └── layouts/  
+├── main.jsx  
+└── index.css
+```
+
+---
+## ⚙Installasi & Setup
+
+Prasyarat:
+install node.js (https://nodejs.org/)
+
+Setelah melakukan prasyarat,
+
+Ikuti langkah berikut:
+```
+# Clone repository
+git clone https://github.com/irfanur02/trivia-quiz.git
+
+# Masuk ke folder project
+cd trivia-quiz
+
+# Install dependencies
+npm install
+
+# Jalankan development server
+npm run dev
+```
+Lalu, akses aplikasi melalui browser:
+```
+http://localhost:5173
+```
+
+---
+## 🎯Tujuan
+Proyek ini dibuat sebagai prasyarat pendaftaran mengikuti Frontend Engineering Internship Program yang diselenggarakan oleh DOT Indonesia.
